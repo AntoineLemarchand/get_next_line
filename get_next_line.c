@@ -6,25 +6,13 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:40:15 by alemarch          #+#    #+#             */
-/*   Updated: 2021/11/25 21:16:14 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/11/26 09:59:08 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
 
-char	*ft_realloc(char *buff, int size)
-{
-	char	*buff_ret;
-
-	buff_ret = malloc(size * sizeof(char));
-	if (!buff_ret)
-		return (NULL);
-	ft_strcpy(buff_ret, buff);
-	free(buff);
-	return (buff_ret);
-}
-
-char *ft_getline(int fd, int len_read)
+static char	*ft_getline(int fd, int len_read)
 {
 	char	*buff;
 	int		bytes_read;
@@ -49,7 +37,7 @@ char *ft_getline(int fd, int len_read)
 	return (buff);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static int	len_read;
 	char *ret;

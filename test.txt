@@ -1,6 +1,6 @@
-ma libft
-est bien baisée
-mon ft_printf
-me rend bien zehef
-non de dieu gnl
-me fait battre de l'aile
+- ma libft
+- est bien baisée
+- mon ft_printf
+- me rend bien zehef
+- l'infâme gnl
+- me fait battre de l'aile

@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:41:49 by alemarch          #+#    #+#             */
-/*   Updated: 2021/11/30 11:55:03 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:09:12 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*ft_strdup(const char *s)
 	int		s_len;
 	int		i;
 
+	if (!s)
+		return (malloc(sizeof(char)));
 	s_len = (int)ft_strlen((char *)s);
 	i = 0;
 	dest = malloc((s_len + 1) * sizeof(char));

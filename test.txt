@@ -1,6 +1,0 @@
-ma libft
-est bien baisée
-mon ft_printf
-me rend bien zehef
-l'infâme gnl
-me fait battre de l'aile

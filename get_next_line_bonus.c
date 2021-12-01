@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:40:15 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/01 17:06:19 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:14:39 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static int	ft_loadstatic(int fd, char **remain)
 			remain[fd] = ft_strjoin_n_free(remain[fd], tmp);
 		else
 			remain[fd] = ft_strdup(tmp);
-		free(tmp);
 		if (!remain[fd])
 			return (1);
+		free(tmp);
 	}
 	return (0);
 }
 
-static int ft_updateremain(int fd, char **remain, int newline_index)
+static int ft_update_remain(int fd, char **remain, int newline_index)
 {
 	char	*newremain;
 
@@ -73,7 +73,7 @@ static char	*ft_getline(int fd, char **remain)
 	ret = ft_substr(remain[fd], 0, i + 1);
 	if (!ret)
 		return (NULL);
-	if (ft_updateremain(fd, remain, i))
+	if (ft_update_remain(fd, remain, i))
 	{
 		free(ret);
 		return (NULL);

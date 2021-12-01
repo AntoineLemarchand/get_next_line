@@ -6,7 +6,7 @@
 /*   By: alemarch <alemarch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:40:15 by alemarch          #+#    #+#             */
-/*   Updated: 2021/12/01 16:04:57 by alemarch         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:06:19 by alemarch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,22 @@ static int	ft_loadstatic(int fd, char **remain)
 	return (0);
 }
 
+static int ft_updateremain(int fd, char **remain, int newline_index)
+{
+	char	*newremain;
+
+	newremain = ft_substr(remain[fd], newline_index + 1, ft_strlen(remain[fd]));
+	if (!newremain)
+		return (1);
+	free(remain[fd]);
+	remain[fd] = newremain;
+	return (0);
+}
+
 static char	*ft_getline(int fd, char **remain)
 {
 	size_t	i;
 	char	*ret;
-	char	*newremain;
 
 	i = 0;
 	while (remain[fd] && remain[fd][i] && remain[fd][i] != '\n')
@@ -62,14 +73,11 @@ static char	*ft_getline(int fd, char **remain)
 	ret = ft_substr(remain[fd], 0, i + 1);
 	if (!ret)
 		return (NULL);
-	newremain = ft_substr(remain[fd], i + 1, ft_strlen(remain[fd]));
-	if (!newremain)
+	if (ft_updateremain(fd, remain, i))
 	{
 		free(ret);
 		return (NULL);
 	}
-	free(remain[fd]);
-	remain[fd] = newremain;
 	return (ret);
 }
 
@@ -91,22 +99,3 @@ char	*get_next_line(int fd)
 	}
 	return (buff);
 }
-/*
-#include<stdio.h>
-int main(int ac, char **av)
-{
-	(void)ac;
-	int fd = open(av[1], O_RDONLY);
-	char *str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	while (str)
-	{
-		str = get_next_line(fd);
-		if (str)
-			printf("%s", str);
-		free(str);
-	}
-	return (0);
-}
-*/
